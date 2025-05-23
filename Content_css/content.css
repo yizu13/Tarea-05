@@ -1,0 +1,99 @@
+.SearchButton{
+    margin-right: 0.5vw;
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.SearchButton:hover{
+    background-color: rgba(65, 65, 65, 0.2);
+    cursor: pointer;
+}
+
+.SearchButton:active{
+    scale: 0.8;
+    background-color: rgba(206, 206, 206, 0.2);
+}
+
+.icon{
+    margin-top: 0.5vh;
+}
+
+.inputField{
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-color: rgba(36, 36, 36, 0.4);
+    border-width: 0vw;
+    transition: all 0.2s ease;
+}
+
+.inputField:focus{
+    outline: none;
+    border-width: 0.3cap;
+}
+
+.swapButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.swap{
+    background-color: transparent;
+    width: 40px;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.swap:hover{
+    background-color: rgba(66, 66, 66, 0.2);
+    cursor: pointer;
+}
+
+.iconDescription{
+    margin-right: 0.5vw;
+    margin-top: -0.5vh;
+}
+
+.humidityInfo{
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.windSpeed{
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.tempetureFeel{
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+#geolocalizationbtn{
+    background-color: transparent;
+    border: none;
+}
+
+#geolocalizationbtn:hover{
+    cursor: pointer;
+}
+
+@keyframes movementgeolocalization {
+    from{
+         transform: translateY(0);
+    }
+    to{
+        transform: translateY(10%);
+    }
+}
+
+#geolocalizationbtn:active{
+    animation: movementgeolocalization 0.3s ease forwards;
+}
