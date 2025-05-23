@@ -6,9 +6,18 @@ let celsius;
 let fahrenheitFeeling;
 let celsiusFeeling;
 
+let avgTempetureF1 = [];
+
+let avgTempeturC1 = [];
+
+const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado"]
+
 const searchButton = document.getElementById("searchbtn");
 const swap = document.getElementById("swap");
 const sign = document.getElementById("signTempeture");
+const tempetureGroup = document.getElementsByClassName("tempeture1");
+const GroupOfIcons = document.getElementsByClassName("dayState");
+const GroupDays = document.getElementsByClassName("dayTitle");
 
 
 async function getInfo (){
@@ -36,6 +45,14 @@ const getTempetureFeeling = ()=>{
     }
 }
 
+const getExactTempeture = (i)=>{
+    if(sign.textContent === "°C"){
+        return `${avgTempeturC1[i]} °C`;
+    } else if(sign.textContent === "°F"){
+        return `${avgTempetureF1[i]} °F`;
+    }
+}
+
 searchButton.addEventListener("click", async () => {
 
     // declarations
@@ -49,7 +66,7 @@ searchButton.addEventListener("click", async () => {
     
     try{
     // async calls
-    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${dataField.value}&days=5&lang=${language}`)
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${dataField.value}&days=6&lang=${language}`)
     const data = await response.json();
 
     // Logic
@@ -65,6 +82,18 @@ searchButton.addEventListener("click", async () => {
     humidity.textContent = data.current.humidity;
     windSpeed.textContent = `${data.current.wind_kph} kph`;
     tempetureFeel.textContent = getTempetureFeeling();
+    
+    avgTempeturC1 = [];
+    avgTempeturC1 = [];
+    for(let i = 1; i < data.forecast.forecastday.length; i++){
+        avgTempetureF1.push(data.forecast.forecastday[i].day.avgtemp_f);
+        avgTempeturC1.push(data.forecast.forecastday[i].day.avgtemp_c);
+
+        tempetureGroup[i - 1].textContent = getExactTempeture(i - 1);
+        GroupOfIcons[i - 1].innerHTML = `<img src="${data.forecast.forecastday[i].day.condition.icon}" width="32" height="32" class="iconDescription"/>`
+        GroupDays[i-1].textContent = days[new Date(data.forecast.forecastday[i].hour[10].time).getDay()]
+        console.log(new Date(data.forecast.forecastday[i].hour[10].time).getDay());
+}
 
     dataField.value = ""
 
@@ -90,6 +119,10 @@ swap.addEventListener("click", ()=>{
 
     tempeture.textContent = getTempeture();
     tempetureFeel.textContent = getTempetureFeeling();
+
+    for(let i = 0; i < tempetureGroup.length; i++){
+        tempetureGroup[i].textContent = getExactTempeture(i)
+    }
 
 })
 

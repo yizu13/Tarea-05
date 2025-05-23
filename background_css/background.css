@@ -4,6 +4,7 @@ body {
   align-items: center;
   font-family: 'Poppins', sans-serif;
   color: rgb(255, 255, 255);
+  overflow: auto;
 }
 
 @keyframes introMain{
@@ -31,6 +32,8 @@ body {
     border-radius: 40px;
     box-shadow: 10px 10px 30px 2px rgba(0, 0, 0, 0.6);
     animation: introMain 1s ease ;
+    z-index: 1;
+    overflow: auto;
 }
 
 .searchSection{
@@ -74,4 +77,28 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 2vh;
+}
+
+.forecastContent{
+    background: #cccccc;
+    background: linear-gradient(180deg, rgba(204, 204, 204, 1) 0%, rgba(232, 232, 232, 1) 82%, rgba(255, 255, 255, 1) 100%);
+    position: absolute;
+    display: flex;
+
+    top: 88%;
+    left: 50%;
+    width: 40vw;
+    height: 20vh;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    box-shadow: 10px 10px 30px 2px rgba(0, 0, 0, 0.6);
+    animation: introMain 1s ease ;
+    z-index: 0;
+    overflow:auto;
+}
+
+.dayStyle{
+    color: red;
+    margin-top: 3.2em;
+    margin-left: 8.5%;
 }

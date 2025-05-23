@@ -97,3 +97,12 @@
 #geolocalizationbtn:active{
     animation: movementgeolocalization 0.3s ease forwards;
 }
+
+.thermometerIcon{
+   margin-bottom: -0.3em;
+   margin-left: -1vw;
+}
+
+.dayState{
+    margin-left: 0.8vw;
+}
