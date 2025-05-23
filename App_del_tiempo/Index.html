@@ -18,10 +18,32 @@
             </button>
             <input type="text" class="inputField" placeholder="Ciudad" id="container"/>
             <button id="favoritebtn_" class="favoritebtn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#ffbe14" d="m12 16.102l-3.63 2.192q-.16.079-.297.064q-.136-.016-.265-.094q-.13-.08-.196-.226t-.012-.319l.966-4.11l-3.195-2.77q-.135-.11-.178-.263t.019-.293t.165-.23q.104-.087.28-.118l4.216-.368l1.644-3.892q.068-.165.196-.238T12 5.364t.288.073t.195.238l1.644 3.892l4.215.368q.177.03.281.119q.104.088.166.229q.061.14.018.293t-.178.263l-3.195 2.77l.966 4.11q.056.171-.011.318t-.197.226q-.128.08-.265.095q-.136.015-.296-.064z"/></svg></button>
-            <select name="star" id="favoriteSelect">
-                 <option value="ninguno">Volvo</option>
-            </select>
+            <div class="select">
+            <div class="selected"
+            >
+            Favoritos
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1em"
+      viewBox="0 0 512 512"
+      class="arrow"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+      ></path>
+    </svg>
+  </div>
+  <div class="options" id="options">
+    <div title="all">
+      <input id="all" name="option" type="radio" checked="" />
+      <label class="option" for="all" data-txt="All"></label>
+    </div>
+    <div title="option-1">
+      <input id="option-1" name="option" type="radio" />
+      <label class="option" for="option-1" data-txt="option-1"></label>
+    </div>
+    </div>
+        </div>
             </div>
+
+
             <section class="mainContent">
                 <div class="nombreCiudad">
                     nombre de la ciudad, país
