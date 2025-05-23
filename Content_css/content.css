@@ -104,5 +104,21 @@
 }
 
 .dayState{
-    margin-left: 0.8vw;
+    margin-left: 0.8rem;
+}
+
+.favoritebtn{
+    background-color: transparent;
+    border-radius: 20px;
+    border: none;
+    transition:all 0.1s;
+}
+
+.favoritebtn:hover{
+    cursor: pointer;
+    background-color: rgba(206, 206, 206, 0.4);
+}
+
+.favoritebtn:active{
+    scale: 0.8;
 }

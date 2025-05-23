@@ -18,7 +18,10 @@ const sign = document.getElementById("signTempeture");
 const tempetureGroup = document.getElementsByClassName("tempeture1");
 const GroupOfIcons = document.getElementsByClassName("dayState");
 const GroupDays = document.getElementsByClassName("dayTitle");
+const dataField = document.getElementById("container");
 
+const favoriteBtn = document.getElementById("favoritebtn_");
+const favoriteContainer = document.getElementById("favoriteSelect");
 
 async function getInfo (){
     const response = await (await fetch("http://api.weatherapi.com/v1/forecast.json?key=9b1a159f550343088a413516252305&q=48.8567,2.3508&days=5")).json();
@@ -56,7 +59,6 @@ const getExactTempeture = (i)=>{
 searchButton.addEventListener("click", async () => {
 
     // declarations
-    const dataField = document.getElementById("container");
     const countryCity = document.getElementsByClassName("nombreCiudad")[0];
     const tempeture = document.getElementById("tempetureNumber");
     const description = document.getElementsByClassName("description")[0];
@@ -147,6 +149,32 @@ function load(){
 }
 
 load()
+
+
+
+// This section is favorite system
+
+    favoriteBtn.addEventListener("click", ()=>{
+        const newOption = document.createElement("option");
+        const span = document.createElement("span");
+        const divDelete = document.createElement("div");
+        const deleteBtn = document.createElement("button");
+
+        span.textContent = dataField.value;
+
+        newOption.setAttribute("class", "newOption");
+
+        divDelete.appendChild(deleteBtn);
+        newOption.append(span, divDelete);
+        favoriteContainer.appendChild(newOption);
+
+    });
+
+    favoriteContainer.addEventListener("change", (e)=>{
+        console.log(e.target.value)
+        dataField.value = e.target.value;
+        searchButton.click();
+    });
 
 // falta agregar colores dinámicos, cambio de idioma, algunos retos adicionales...
 // hacerlo más responsive
