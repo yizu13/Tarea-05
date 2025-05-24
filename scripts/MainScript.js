@@ -21,7 +21,7 @@ const GroupDays = document.getElementsByClassName("dayTitle");
 const dataField = document.getElementById("container");
 
 const favoriteBtn = document.getElementById("favoritebtn_");
-const favoriteContainer = document.getElementById("favoriteSelect");
+const favoriteContainer = document.getElementById("options");
 
 async function getInfo (){
     const response = await (await fetch("http://api.weatherapi.com/v1/forecast.json?key=9b1a159f550343088a413516252305&q=48.8567,2.3508&days=5")).json();
@@ -158,31 +158,37 @@ load()
         const optionsCreated = document.getElementsByClassName("newOption");
         let optionsValues = [];
         for(let i = 0; i < optionsCreated.length; i++){
-            optionsValues.push(optionsCreated[i].value);
+            optionsValues.push(optionsCreated[i].title);
         }
         if(!(optionsValues.find(el => el === dataField.value))){
         const newOption = document.createElement("div");
-        const span = document.createElement("span");
-        const divDelete = document.createElement("div");
+        const label = document.createElement("label");
+        const input_ = document.createElement("input");
+        const divDelete = document.createElement("span");
         const deleteBtn = document.createElement("button");
+        
+        input_.setAttribute("name", "option"); input_.setAttribute("type", "radio"); input_.setAttribute("id", dataField.value);
+        label.setAttribute("class", "option"); label.setAttribute("for", dataField.value); label.setAttribute("data-txt", dataField.value);
 
-        deleteBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24ffd" viewBox="0 0 40 40"><path fill="currentColor" d="M21.499 19.994L32.755 8.727a1.064 1.064 0 0 0-.001-1.502c-.398-.396-1.099-.398-1.501.002L20 18.494L8.743 7.224c-.4-.395-1.101-.393-1.499.002a1.05 1.05 0 0 0-.309.751c0 .284.11.55.309.747L18.5 19.993L7.245 31.263a1.064 1.064 0 0 0 .003 1.503c.193.191.466.301.748.301h.006c.283-.001.556-.112.745-.305L20 21.495l11.257 11.27c.199.198.465.308.747.308a1.06 1.06 0 0 0 1.061-1.061c0-.283-.11-.55-.31-.747z"/></svg>`
+        deleteBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40"><path fill="currentColor" d="M21.499 19.994L32.755 8.727a1.064 1.064 0 0 0-.001-1.502c-.398-.396-1.099-.398-1.501.002L20 18.494L8.743 7.224c-.4-.395-1.101-.393-1.499.002a1.05 1.05 0 0 0-.309.751c0 .284.11.55.309.747L18.5 19.993L7.245 31.263a1.064 1.064 0 0 0 .003 1.503c.193.191.466.301.748.301h.006c.283-.001.556-.112.745-.305L20 21.495l11.257 11.27c.199.198.465.308.747.308a1.06 1.06 0 0 0 1.061-1.061c0-.283-.11-.55-.31-.747z"/></svg>`;
+        deleteBtn.setAttribute("class", "deletebtnfavorite");
 
-        span.textContent = dataField.value;
-
-        newOption.setAttribute("value", dataField.value)
+        newOption.setAttribute("title", dataField.value);
         newOption.setAttribute("class", "newOption");
 
+        label.addEventListener("click", (e)=>{
+            dataField.value = newOption.title
+            searchButton.click();
+        });
+
+        deleteBtn.addEventListener("click", ()=>{
+            newOption.remove();
+        });
+
         divDelete.appendChild(deleteBtn);
-        newOption.append(span, divDelete);
+        newOption.append(label, input_, divDelete);
         favoriteContainer.appendChild(newOption);
 }
-    });
-
-    favoriteContainer.addEventListener("change", (e)=>{
-        dataField.value = e.target.value;
-        searchButton.click();
-        favoriteContainer.value = "Seleccione una opción"
     });
 
 // falta agregar colores dinámicos, cambio de idioma, algunos retos adicionales...
